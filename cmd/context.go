@@ -151,16 +151,12 @@ func (c *Context) buildRedis() (redis.RedisClient, error) {
 	port := valuer.Value(6379).Try(
 		os.Getenv("REDIS_PORT"), c.Section("redis").Key("port").MustInt(),
 	).Int()
-	password := valuer.Value("secret").Try(
-		os.Getenv("REDIS_AUTH"), c.Section("redis").Key("auth").String(),
-	).String()
 	db := valuer.Value(0).Try(
 		os.Getenv("REDIS_DB"), c.Section("redis").Key("db").MustInt(),
 	).Int()
 
 	return redis.NewClient(
 		redis.WithAddress(host, port),
-		redis.WithAuth("", password),
 		redis.WithDB(db),
 	)
 }

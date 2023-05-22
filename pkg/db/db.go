@@ -31,11 +31,11 @@ type options struct {
 func defaultOptions() *options {
 	return &options{
 		driver:        "mysql",
-		dsn:           "root:secret@tcp(127.0.0.1:3306)/metaplasia-sso?charset=utf8&parseTime=true&loc=UTC",
+		dsn:           "root:secret@tcp(127.0.0.1:3306)/frame?charset=utf8&parseTime=true&loc=UTC",
 		slowThreshold: time.Millisecond * 100,
 		logger:        log.NewConsoleLogger("DB"),
 		cacheStore:    cache.DefaultStore(),
-		tracer:        otel.Tracer("sso/pkg/db"),
+		tracer:        otel.Tracer("frame/pkg/db"),
 	}
 }
 
